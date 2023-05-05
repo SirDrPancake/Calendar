@@ -9,14 +9,14 @@ $(function () {
   // create a loop to tie all the time blocks together
   $(".time-block").each(function() {
     
-    var id = $(this).attr("id");
+  ;
    
   
     // depending on the hour, the color changes from green to red to grey respectfully
-    if (parseInt(id.split("-")[1]) < dayjs().hour()) {
+    if (parseInt($(this).attr("id").split("-")[1]) < dayjs().hour()) {
       $(this).removeClass("present future").addClass("past");
 
-    } else if (parseInt(id.split("-")[1]) === dayjs().hour()) {
+    } else if (parseInt($(this).attr("id").split("-")[1]) === dayjs().hour()) {
       $(this).removeClass("past future").addClass("present");
 
     } else {
@@ -24,9 +24,9 @@ $(function () {
     }
    
     // will keep the information kept
-    $(this).children(".description").val(localStorage.getItem(id));
+    $(this).children(".description").val(localStorage.getItem($(this).attr("id")));
   });
 
   // the current day is shown in the header
-  $("#currentDay").localStorage.getItem(id)(dayjs().format("dddd, MMMM D, YYYY"));
+  $("#currentDay").localStorage.getItem($(this).attr("id"))(dayjs().format("dddd, MMMM D, YYYY"));
 });
