@@ -28,5 +28,5 @@ $(function () {
   });
 
   // the current day is shown in the header
-  $("#currentDay").localStorage.getItem($(this).attr("id"))(dayjs().format("dddd, MMMM D, YYYY"));
+  $("#currentDay").text(dayjs().format("dddd, MMMM D, YYYY"));
 });
