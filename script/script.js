@@ -1,13 +1,9 @@
 
 $(function () {
-  // Add a click event listener to all save buttons
+  // the save button for the time block
   $(".saveBtn").on("click", function() {
-    // Get the id of the parent time-block element
-    var id = $(this).parent().attr("id");
-    // Get the value of the textarea element in the same time-block
-    var text = $(this).siblings(".description").val();
-    // Save the value in localStorage using the time-block id as the key
-    localStorage.setItem(id, text);
+    // information is logged once the click event is done
+    localStorage.setItem($(this).parent().attr("id"), $(this).siblings(".description").val());
   });
 
   // create a loop to tie all the time blocks together
@@ -16,7 +12,7 @@ $(function () {
     var id = $(this).attr("id");
    
   
-    // Add/remove classes based on the current hour and time-block hour
+    // depending on the hour, the color changes from green to red to grey respectfully
     if (parseInt(id.split("-")[1]) < dayjs().hour()) {
       $(this).removeClass("present future").addClass("past");
 
@@ -27,11 +23,10 @@ $(function () {
       $(this).removeClass("past present").addClass("future");
     }
    
-    // Set the value of the textarea element in the same time-block
+    // will keep the information kept
     $(this).children(".description").val(localStorage.getItem(id));
   });
 
-  // Display the current date in the header using Day.js library
-  var currentDate = dayjs().format("dddd, MMMM D, YYYY");
-  $("#currentDay").localStorage.getItem(id)(currentDate);
+  // the current day is shown in the header
+  $("#currentDay").localStorage.getItem(id)(dayjs().format("dddd, MMMM D, YYYY"));
 });
