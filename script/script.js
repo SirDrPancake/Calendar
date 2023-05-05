@@ -10,21 +10,22 @@ $(function () {
     localStorage.setItem(id, text);
   });
 
-  // Loop through all time-block elements
+  // create a loop to tie all the time blocks together
   $(".time-block").each(function() {
-    // Get the id of the current time-block
+    
     var id = $(this).attr("id");
-    // Get the hour value from the id, using parseInt to extract the number
+   
   
     // Add/remove classes based on the current hour and time-block hour
     if (parseInt(id.split("-")[1]) < dayjs().hour()) {
       $(this).removeClass("present future").addClass("past");
+
     } else if (parseInt(id.split("-")[1]) === dayjs().hour()) {
       $(this).removeClass("past future").addClass("present");
+
     } else {
       $(this).removeClass("past present").addClass("future");
     }
-    // Get the user input value from localStorage using the time-block id as the key
    
     // Set the value of the textarea element in the same time-block
     $(this).children(".description").val(localStorage.getItem(id));
